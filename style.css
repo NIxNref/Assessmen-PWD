@@ -1,0 +1,45 @@
+.isinya{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, auto));
+    gap: 1rem;
+}
+
+.img-size{
+    width: 100%;
+    height: 32vw;
+    object-fit: cover; 
+}
+
+body {
+    background-color: gray;
+}
+
+.cart-content{
+    display: grid;
+    grid-template-columns: 32% 50% 18% !important;
+    /* image-resolution: 2; */
+    
+}
+
+img {
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+.cart-quantity{
+    width: 3rem;
+}
+
+.cart-remove {
+    font-size: 24px;
+    color: red;
+    cursor: pointer;
+}
+
+.total-price{
+    display: flex;
+    justify-content: flex-end; 
+    /* margin-top: 1.5rem; */
+    margin-left: 0.5rem;
+}

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 let cartIcon = document.querySelector('#cart-icon');
 let cart = document.querySelector('.cart');
 let closeCart = document.querySelector('#close-cart');
@@ -13,8 +12,6 @@ closeCart.onclick = () => {
     cart.classList.remove("active");
 }
 
-=======
->>>>>>> e870ee9c15f160c9f7de860af33c919d02a32347
 // Make js working
 if (document.readyState == "loading") {
     document.addEventListener("DOMContentLoaded", ready);
@@ -24,17 +21,13 @@ if (document.readyState == "loading") {
 
 // making function
 function ready() {
-<<<<<<< HEAD
     // remove items from cart
-=======
->>>>>>> e870ee9c15f160c9f7de860af33c919d02a32347
     var removeCartBtns = document.getElementsByClassName('cart-remove');
     for (var i = 0; i < removeCartBtns.length; i++) {
         var btn = removeCartBtns[i];
         btn.addEventListener('click', removeCartItems);
     }
 
-<<<<<<< HEAD
     // quantity change
     var quantityInputs = document.getElementsByClassName('cart-quantity');
     for (var i = 0; i < quantityInputs.length; i++) {
@@ -80,25 +73,14 @@ function downloadRecipe(recipeText) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-=======
-    var quantityInputs = document.getElementsByClassName('cart-quantity');
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i];
-        input.addEventListener('change', quantityChanged); 
-    }
->>>>>>> e870ee9c15f160c9f7de860af33c919d02a32347
 }
 
 // jumlah barang
 function quantityChanged(event) {
     var input = event.target;
-<<<<<<< HEAD
     var newValue = parseInt(input.value);
 
     if (isNaN(newValue) || newValue <= 0) {
-=======
-    if (isNaN(input.value) || input.value <= 0) {
->>>>>>> e870ee9c15f160c9f7de860af33c919d02a32347
         input.value = 1;
     }
     updateTotal();
@@ -111,7 +93,6 @@ function removeCartItems(event) {
     updateTotal();
 }
 
-<<<<<<< HEAD
 // add to cart
 function addCartClicked(event) {
     event.preventDefault(); // Prevent the default behavior of the add-to-cart button
@@ -202,11 +183,6 @@ function addProductToCart(title, price, productImg) {
 // update harga dan pajak
 function updateTotal() {
     var cartContent = document.querySelector('.cart-content');
-=======
-// update harga dan pajak
-function updateTotal() {
-    var cartContent = document.getElementsByClassName('cart-content')[0];
->>>>>>> e870ee9c15f160c9f7de860af33c919d02a32347
     var cartBoxes = cartContent.getElementsByClassName('cart-box');
     var total = 0;
     var pajakPersentase = 10; // Ganti dengan persentase pajak yang sesuai
@@ -214,54 +190,16 @@ function updateTotal() {
 
     for (var i = 0; i < cartBoxes.length; i++) {
         var cartBox = cartBoxes[i];
-<<<<<<< HEAD
         var priceEl = cartBox.querySelector('.cart-price'); // Use querySelector to get the first element with class 'cart-price'
         var qty = cartBox.querySelector('.cart-quantity'); // Use querySelector to get the first element with class 'cart-quantity'
         var price = parseFloat(priceEl.innerText.replace("Rp. ", ""));
         var quantity = parseInt(qty.value);
-=======
-        var priceEl = cartBox.getElementsByClassName('cart-price')[0];
-        var qty = cartBox.getElementsByClassName('cart-quantity')[0];
-        var price = parseFloat(priceEl.innerText.replace("Rp. ", ""));
-        var quantity = qty.value;
->>>>>>> e870ee9c15f160c9f7de860af33c919d02a32347
         total = total + (price * quantity);
     }
 
     pajakTotal = total * (pajakPersentase / 100);
     total += pajakTotal;
 
-<<<<<<< HEAD
     document.querySelector('.total-price').innerText = 'Rp. ' + total.toFixed(2); // Use querySelector to get the first element with class 'total-price'
     document.querySelector('.tax-price').innerText = 'Rp. ' + pajakTotal.toFixed(2); // Use querySelector to get the first element with class 'tax-price'
 }
-=======
-    document.getElementsByClassName('total-price')[0].innerText = 'Rp. ' + total.toFixed(2);
-    document.getElementsByClassName('tax-price')[0].innerText = 'Rp. ' + pajakTotal.toFixed(2);
-
-    
-}
-
-// Menambahkan barang ke cart
-const cardBody = document.querySelectorAll('#makanan');
-cardBody.forEach(function(card){
-    card.addEventListener('click', function () {
-        console.log(card);
-        const nama = card.querySelector('.name').textContent;
-        const prices = card.querySelector('#harga').textContent;
-        console.log(nama, prices);
-        const containerls = document.getElementsByClassName('container-list');
-        containerls.innerHtml += InsertList(nama, prices);
-    });
-});
-
-function InsertList(nama, prices) {
-    return `<img src="/Assets/img/burger.jpeg" alt="Test">
-            <div class="cart-box">
-                <div class="cart-title">${nama}</div><br>
-                <div class="cart-price">${prices}</div>
-                <input type="number" value="0" class="cart-quantity">
-            </div>
-            <i class="fa fa-trash-o cart-remove" aria-hidden="true"></i>`
-}
->>>>>>> e870ee9c15f160c9f7de860af33c919d02a32347

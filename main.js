@@ -1,6 +1,7 @@
 let cartIcon = document.querySelector('#cart-icon');
 let cart = document.querySelector('.cart');
 let closeCart = document.querySelector('#close-cart');
+let cartItemCount = 0;
 
 // open cart
 cartIcon.onclick = () => {
@@ -49,6 +50,14 @@ function ready() {
     }
 }
 
+// cart badge
+function updateCartBadge() {
+    // Update the badge with the current item count
+    document.querySelector('#cart-badge').innerText = cartItemCount;
+}
+
+
+
 // buy button
 function buyButtonClicked() {
     alert("Item sudah berhasil dibeli");
@@ -62,6 +71,10 @@ function buyButtonClicked() {
     var cartContent = document.querySelector('.cart-content');
     cartContent.innerHTML = ''; // Clear all child elements
     updateTotal();
+
+    // Reset the cart item count
+    cartItemCount = 0;
+    updateCartBadge();
 }
 
 // download recipe 
@@ -174,6 +187,12 @@ function addProductToCart(title, price, productImg) {
     // Add event listeners
     cartShopBox.querySelector('.cart-remove').addEventListener('click', removeCartItems);
     cartShopBox.querySelector('.cart-quantity').addEventListener('change', quantityChanged);
+
+    // Increment the cart item count
+    cartItemCount++;
+
+    // Update the cart badge
+    updateCartBadge();
 
     // Update total after adding item to cart
     updateTotal();

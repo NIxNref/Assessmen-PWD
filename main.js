@@ -60,21 +60,25 @@ function updateCartBadge() {
 
 // buy button
 function buyButtonClicked() {
-    alert("Item sudah berhasil dibeli");
+    if (cartItemCount > 0) {
+        alert("Item sudah berhasil dibeli");
 
-    // Transform cart items into a recipe format
-    var recipeText = transformCartToRecipe();
+        // Transform cart items into a recipe format
+        var recipeText = transformCartToRecipe();
 
-    // Download the recipe as a text file
-    downloadRecipe(recipeText);
+        // Download the recipe as a text file
+        downloadRecipe(recipeText);
 
-    var cartContent = document.querySelector('.cart-content');
-    cartContent.innerHTML = ''; // Clear all child elements
-    updateTotal();
+        var cartContent = document.querySelector('.cart-content');
+        cartContent.innerHTML = ''; // Clear all child elements
+        updateTotal();
 
-    // Reset the cart item count
-    cartItemCount = 0;
-    updateCartBadge();
+        // Reset the cart item count
+        cartItemCount = 0;
+        updateCartBadge();
+    } else {
+        alert("Keranjang masih kosong. Silahkan tambahkan item sebelum membeli.");
+    }
 }
 
 // download recipe 

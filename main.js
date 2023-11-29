@@ -69,6 +69,12 @@ function ready() {
     if (buyButton) {
         buyButton.addEventListener("click", buyButtonClicked);
     }
+
+    // print button
+    var printButton = document.getElementById('print-button');
+    if (printButton) {
+        printButton.addEventListener('click', printCart);
+    }
 }
 
 // cart badge
@@ -139,6 +145,12 @@ function removeCartItems(event) {
     var btnClicked = event.target;
     btnClicked.parentElement.remove();
     updateTotal();
+    
+    // Decrement the cart item count
+    cartItemCount--;
+
+    // Update the cart badge
+    updateCartBadge();
 }
 
 // add to cart
@@ -260,6 +272,59 @@ function addProductToCart(title, price, productImg) {
         timeout: 3000
     });
 }
+
+// print cart
+// Function to handle printing the cart content
+function printCart() {
+    // Get the cart content element
+    var cartContentElement = document.querySelector(".cart-content");
+
+    // Create a new div element to store only the text content
+    var printDiv = document.createElement("div");
+    printDiv.innerHTML = "<h1>Your Cart</h1>";
+
+    // Loop through cart boxes and add information to the printDiv
+    var cartBoxes = cartContentElement.querySelectorAll(".cart-box");
+    var total = 0;
+
+    cartBoxes.forEach(function (cartBox) {
+        var title = cartBox.querySelector(".cart-product-title").innerText;
+        var price = cartBox.querySelector(".cart-price").innerText;
+        var quantity = cartBox.querySelector(".cart-quantity").value;
+
+        // Calculate the total for each item
+        var itemTotal = parseFloat(price.replace("Rp. ", "")) * quantity;
+        total += itemTotal;
+
+        // Add item information to the printDiv
+        printDiv.innerHTML += `<p>${title} - ${quantity} x ${price} = Rp. ${itemTotal.toFixed(2)}</p>`;
+    });
+
+    // Get the tax and total after tax information
+    var tax = document.querySelector(".tax-price").innerText;
+    var totalAfterTax = document.querySelector(".total-price").innerText;
+
+    // Add tax and total information to the printDiv
+    printDiv.innerHTML += `<p>Tax: ${tax}</p>`;
+    printDiv.innerHTML += `<p>Total after Tax: ${totalAfterTax}</p>`;
+
+    // Open a new window for printing
+    var printWindow = window.open('', '_blank');
+
+    // Write the text content to the new window
+    printWindow.document.write('<html><head><title>Recipes</title></head><body>');
+    printWindow.document.write(printDiv.innerHTML);
+    printWindow.document.write('</body></html>');
+
+    // Close the document for printing
+    printWindow.document.close();
+
+    // Trigger the print dialog
+    printWindow.print();
+}
+
+
+
 
 // update harga dan pajak
 function updateTotal() {

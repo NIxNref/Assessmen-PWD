@@ -13,6 +13,27 @@ closeCart.onclick = () => {
     cart.classList.remove("active");
 };
 
+// Search functionality
+    const searchInput = document.getElementById('search-input');
+    const searchIcon = document.getElementById('search-icon');
+
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        // Loop through product boxes and show/hide based on search term
+        const productBoxes = document.querySelectorAll('.product-box');
+        productBoxes.forEach(function (box) {
+            // Check if dataset properties are defined
+            const productName = (box.dataset.name || '').toLowerCase();
+            const productCategories = (box.dataset.categories || '').toLowerCase();
+
+            box.style.display = productName.includes(searchTerm) || productCategories.includes(searchTerm) ? 'block' : 'none';
+        });
+    });
+
+
+
+
 // Make js working
 if (document.readyState == "loading") {
     document.addEventListener("DOMContentLoaded", ready);

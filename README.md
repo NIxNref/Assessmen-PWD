@@ -11,4 +11,4 @@
   
   ![Preview Image](Assets/docs/starbhak_fnb-mobile.jpg)
 
-  Source Image : my Instagram | <a href="https://www.instagram.com/panji.n.047/" target="_blank">Check out my Instagram</a>
+ <a href="https://www.instagram.com/panji.n.047/" target="_blank">Check out my Instagram</a>
